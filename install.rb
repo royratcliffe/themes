@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../../config/boot'
 
-directory = File.join(RAILS_ROOT, '/vendor/plugins/themes/')
+directory = File.join(Rails.root, '/vendor/plugins/themes/')
 
 def xcopy(options)
   source  = options[:source]
@@ -30,7 +30,7 @@ end
 
 puts "** Installing Theme Assets **"
 src = File.join(directory, '/assets/')
-dst = File.join(RAILS_ROOT, '/public/themes/')
+dst = File.join(Rails.root, '/public/themes/')
 unless File.exists?(dst)
   puts "Creating destination directory..."
   FileUtils.mkdir(dst)
@@ -40,7 +40,7 @@ puts "** Successfully Installed Theme Assets **"
 
 puts "** Installing Theme Layouts **"
 src = File.join(directory, '/templates/')
-dst = File.join(RAILS_ROOT, '/app/views/layouts/')
+dst = File.join(Rails.root, '/app/views/layouts/')
 unless File.exists?(dst)
   puts "Creating destination directory..."
   FileUtils.mkdir(dst)
@@ -50,16 +50,16 @@ puts "** Successfully Installed Theme Layouts **"
 
 puts "** Installing Site Config **"
 src = File.join(directory, '/config/')
-dst = File.join(RAILS_ROOT, '/config/')
+dst = File.join(Rails.root, '/config/')
 xcopy(:source => src, :dest => dst, :logging => true)
 src = File.join(directory, '/initializers/')
-dst = File.join(RAILS_ROOT, '/config/initializers/')
+dst = File.join(Rails.root, '/config/initializers/')
 xcopy(:source => src, :dest => dst, :logging => true)
 puts "** Successfully Installed Site Config **"
 
 puts "** Installing Helpers **"
 src = File.join(directory, '/helpers/')
-dst = File.join(RAILS_ROOT, '/app/helpers/')
+dst = File.join(Rails.root, '/app/helpers/')
 xcopy(:source => src, :dest => dst, :logging => true)
 puts "** Successfully Installed Helpers **"
 
